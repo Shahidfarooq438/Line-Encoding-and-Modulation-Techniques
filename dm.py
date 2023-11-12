@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
  
-sampling_frequency =float(input("Enter Sampling Frequency:\n"))          
+sampling_frequency =pow(10,float(input("Enter Sampling Frequency:\n")))
 signal_duration =float(input("Enter Signal Duration:\n"))             
 time = np.arange(signal_duration * sampling_frequency) / sampling_frequency
 
