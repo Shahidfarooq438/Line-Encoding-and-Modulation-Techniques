@@ -21,11 +21,10 @@ message = message_cosine + message_sine
 bandwidth = max(message_frequency_cosine, message_frequency_sine)   
 
 
-nyquist_rate_factor =sampling_frequency/2 
+nyquist_rate =float(input("Enter the nyquist_rate ")) 
 delta_sampling_frequency = nyquist_rate_factor * 2 * bandwidth      
 
-delta_epsilon =2
-      
+delta_epsilon =float(input("Enter the value of delta epsilon: "))
 
  
 delta_time = np.arange(signal_duration * delta_sampling_frequency) / delta_sampling_frequency
