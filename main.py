@@ -1,6 +1,7 @@
 import os
    
 if __name__=='__main__':
+   input_signal=input("Enter the signal you want to give as input:\n1.Analog Signal\n2. Digtal Signal\n")
     if(int(input_signal)==1):
         print("\nYou have chosen Analog Signal\n")
         modulation_technique=input("Enter the modulation tecnique you want to use:\n1.Pulse Code Modulation(PCM)\n2.Delta Modulation(DM)\n")
