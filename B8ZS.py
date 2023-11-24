@@ -5,17 +5,21 @@ import numpy as np
 def b8zs_encoding(bits):
     encoded_bits = []
     consecutive_zeros_count = 0
+    current_level=1
 
     for bit in bits:
         if bit == '1':
             # Represent binary 1 as an alternating positive and negative level
-            encoded_bits.append(1)
+            encoded_bits.append(current_level)
             consecutive_zeros_count = 0
+            current_level=-current_level
         elif bit == '0':
             consecutive_zeros_count += 1
             if consecutive_zeros_count == 8:
                 # Replace eight consecutive zeros with a special code (000VB0VB)
-                encoded_bits.extend([0, 0, 0, 0, 0, 0, 0, 0])
+                for _ in range(7):
+                    encoded_bits.pop()
+                encoded_bits.extend([0,0,0,-current_level,current_level,0,current_level,-current_level])
                 consecutive_zeros_count = 0
             else:
                 # Represent binary 0 as a zero level

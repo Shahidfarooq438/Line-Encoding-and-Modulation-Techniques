@@ -6,23 +6,27 @@ def hdb3_encoding(bits):
     encoded_bits = []
     consecutive_zeros_count = 0
     last_substitution = 0
+    current_level=1
 
     for bit in bits:
         if bit == '1':
             # Represent binary 1 as an alternating positive and negative level
-            encoded_bits.append(1)
+            encoded_bits.append(current_level)
             consecutive_zeros_count = 0
             last_substitution = 0
+            current_level=-current_level
         elif bit == '0':
             consecutive_zeros_count += 1
             if consecutive_zeros_count == 4:
+                for _ in range(3):
+                    encoded_bits.pop()
                 # If there is an even number of 1s since the last substitution, substitute with 000V or B00V
                 if last_substitution % 2 == 0:
-                    encoded_bits.extend([0, 0, 0, last_substitution % 2, 0])
+                    encoded_bits.extend([current_level, 0, 0, current_level])
                     last_substitution += 1
                 # If there is an odd number of 1s since the last substitution, substitute with 0000 or B000
                 else:
-                    encoded_bits.extend([0, 0, 0, 0])
+                    encoded_bits.extend([0, 0, 0, current_level])
                     last_substitution += 1
                 consecutive_zeros_count = 0
             else:
