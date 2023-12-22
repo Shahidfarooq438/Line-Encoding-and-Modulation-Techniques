@@ -17,9 +17,9 @@ if __name__=='__main__':
         elif line_encoding_technique==2:
             os.system("python dm.py")
         elif line_encoding_technique==3:
-            os.system("python machester.py")
+            os.system("python manchester.py")
         elif line_encoding_technique==4:
-            os.system("python differential_machester.py")
+            os.system("python differential_manchester.py")
         else:
             ami_type=int(input("Choose AMI: \n1. with Scrambling\n2. without Scrambling\n"))
             if ami_type==1:

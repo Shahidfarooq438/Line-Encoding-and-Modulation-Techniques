@@ -20,13 +20,14 @@ def hdb3_encoding(bits):
             if consecutive_zeros_count == 4:
                 for _ in range(3):
                     encoded_bits.pop()
-                # If there is an even number of 1s since the last substitution, substitute with 000V or B00V
+                # If there is an even number of 1s since the last substitution, substitute with B00V
                 if last_substitution % 2 == 0:
-                    encoded_bits.extend([current_level, 0, 0, current_level])
+                    current_level=-current_level
+                    encoded_bits.extend([-current_level, 0, 0,-current_level])
                     last_substitution += 1
-                # If there is an odd number of 1s since the last substitution, substitute with 0000 or B000
+                # If there is an odd number of 1s since the last substitution, substitute with 000V
                 else:
-                    encoded_bits.extend([0, 0, 0, current_level])
+                    encoded_bits.extend([0, 0, 0,-current_level])
                     last_substitution += 1
                 consecutive_zeros_count = 0
             else:
@@ -57,7 +58,7 @@ binary_data =input("Enter the data: ")
 hbd3_data = hdb3_encoding(binary_data)
 palindrome=longestPalindrome(binary_data)
 print("Binary Data:", list(binary_data))
-print("NRZ-I Encoded Data:", hbd3_data)
+print("HDB3 Encoded Data:", hbd3_data)
 print("Longest palindrome in dataStream: ",palindrome)
 
 #Plotting values on a graph
